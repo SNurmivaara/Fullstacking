@@ -7,6 +7,19 @@ const Title = props => {
   )
 }
 
+const Statistics = ({good, neutral, bad}) => {
+    return (
+      <div>
+        <p>Hyvä: {good}</p>
+        <p>Neutraali: {neutral}</p>
+        <p>Huono: {bad}</p>
+        <p>Yhteensä: {good+neutral+bad}</p>
+        <p>Keskiarvo: {(good-bad)/(good+neutral+bad)}</p>
+        <p>Positiivisia: {good/(neutral+bad+good)}</p>
+      </div>
+    )
+}
+
 const App = () => {
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
@@ -25,12 +38,7 @@ const App = () => {
         <button onClick={handleNeutralClick}>neutraali</button>
         <button onClick={handleBadClick}>huono</button>
       <Title title='Statistiikka' />
-      <p>Hyvä: {good}</p>
-      <p>Neutraali: {neutral}</p>
-      <p>Huono: {bad}</p>
-      <p>Yhteensä: {good+neutral+bad}</p>
-      <p>Keskiarvo: {(good-bad)/(good+neutral+bad)}</p>
-      <p>Positiivisia: {good/(neutral+bad+good)}</p>
+      <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   )
 
