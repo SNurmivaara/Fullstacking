@@ -15,7 +15,7 @@ const Votes = ({number}) => (
   <p>Has {number} votes</p>
 )
 
-const App = (props) => {
+const App = ({anecdotes}) => {
   const [selected, setSelected] = useState(0)
   const [votes, setVotes] = useState(Array.apply(null, new Array(anecdotes.length)).map(Number.prototype.valueOf,0))
   const [mostVoted, setMostVoted] = useState(0)
@@ -38,12 +38,12 @@ const App = (props) => {
   return (
     <div>
       <Title text='Anecdote of the day' />
-      {props.anecdotes[selected]}
+      {anecdotes[selected]}
       <Votes number={votes[selected]} />
       <Button handleClick={handleVote} text='vote' />
       <Button handleClick={handleRandomise} text='next anecdote' />
       <Title text='Anecdote with the most votes' />
-      {props.anecdotes[mostVoted]}
+      {anecdotes[mostVoted]}
       <Votes number={votes[mostVoted]} />
     </div>
   )
