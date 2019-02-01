@@ -1,10 +1,19 @@
 import React from 'react'
 import Course from './components/Course'
+import Header from './components/Header'
 
-const App = ({ course }) => {
+const App = ({ courses }) => {
+  const rows = () => courses.map(course =>
+    <Course
+      key={course.name}
+      course={course}
+    />
+    )
+
   return (
     <div>
-      <Course course={course} />
+      <Header header="Opetusohjelma"/>
+      {rows()}
     </div>
   )
 }
