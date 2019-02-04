@@ -3,13 +3,15 @@ import Filter from './components/filter'
 import PersonForm from './components/personForm'
 import Persons from './components/persons'
 import personService from './services/person'
+import Notification from './components/notification'
 
 const App = () => {
 	const [persons, setPersons] = useState([])
 	const [newName, setNewName] = useState('')
 	const [newNumber, setNewNumber] = useState('')
 	const [showAll, setShowAll] = useState(true)
-	const [searchParam, setSearchParam] = useState('')
+  const [searchParam, setSearchParam] = useState('')
+  const [errorMessage, setErrorMessage] = useState(null)
 
 	useEffect(() => {
     personService
@@ -22,7 +24,12 @@ const App = () => {
   const handleDestroy = id => {
     if (window.confirm(`Haluatko varmasti poistaa käyttäjän?`)) {
       personService
-      .destroy(id)
+      .destroy(id).then(
+        setErrorMessage("Poistettiin onnistuneesti"),
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 2000)
+        )
       .catch(error => {
         console.log(error)
         alert(
@@ -35,6 +42,9 @@ const App = () => {
 
 	return (
 		<div>
+
+      <Notification message={errorMessage} />
+
 			<h2>Puhelinluettelo</h2>
 			
 			<Filter setShowAll={setShowAll} setSearchParam={setSearchParam} />
@@ -49,6 +59,7 @@ const App = () => {
 				setNewName = {setNewName}
         setNewNumber = {setNewNumber}
         personService = {personService}
+        setErrorMessage = {setErrorMessage}
 			/>
 	
 			<h3>Numerot</h3>

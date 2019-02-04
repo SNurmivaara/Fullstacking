@@ -2,11 +2,29 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Note from './components/Note'
 import noteService from './services/notes'
+import './index.css'
+import Notification from './components/Notification'
 
 const App = () => {
   const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('')
   const [showAll, setShowAll] = useState(true)
+  const [errorMessage, setErrorMessage] = useState('virhe...')
+
+  const Footer = () => {
+    const footerStyle = {
+      color: 'green',
+      fontStyle: 'italic',
+      fontSize: 16
+    }
+  
+    return (
+      <div style={footerStyle}>
+        <br />
+        <em>Note app, Department of Computer Science 2019</em>
+      </div> 
+    )
+  }
 
 	const hook = () => {
     console.log('effect')
@@ -39,9 +57,12 @@ const App = () => {
         setNotes(notes.map(note => note.id !== id ? note : returnedNote))
       })
       .catch(error => {
-        alert(
-          `muistiinpano ${note.content} on jo poistettu`
+        setErrorMessage(
+          `muistiinpano ${note.content} on poistettu palvelimelta`
         )
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
         setNotes(notes.filter(n => n.id !== id))
       })
   }
@@ -77,6 +98,9 @@ const App = () => {
   return (
     <div>
       <h1>Muistiinpanot</h1>
+
+      <Notification message={errorMessage} />
+
       <div>
         <button onClick={() => setShowAll(!showAll)}>
         näytä {showAll ? 'vain tärkeät' : 'kaikki'}
@@ -92,6 +116,7 @@ const App = () => {
         />
         <button type="submit">tallenna</button>
       </form>
+      <Footer />
     </div>
   )
 }
