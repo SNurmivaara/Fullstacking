@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Filter from './components/filter'
 import PersonForm from './components/personForm'
 import Persons from './components/persons'
-import axios from 'axios'
+import personService from './services/person'
 
 const App = () => {
 	const [persons, setPersons] = useState([])
@@ -12,13 +12,26 @@ const App = () => {
 	const [searchParam, setSearchParam] = useState('')
 
 	useEffect(() => {
-		axios
-      .get('http://localhost:3001/persons')
+    personService
+      .getAll()
       .then(response => {
-        console.log(response)
         setPersons(response.data)
       })
-	},[])
+  },[])
+  
+  const handleDestroy = id => {
+    if (window.confirm(`Haluatko varmasti poistaa käyttäjän?`)) {
+      personService
+      .destroy(id)
+      .catch(error => {
+        console.log(error)
+        alert(
+          'henkilö on jo poistettu'
+        )
+        setPersons(persons.filter(p => p.id !== id))
+      })
+    }
+  }
 
 	return (
 		<div>
@@ -34,7 +47,8 @@ const App = () => {
 				persons = {persons}
 				setPersons = {setPersons}
 				setNewName = {setNewName}
-				setNewNumber = {setNewNumber}
+        setNewNumber = {setNewNumber}
+        personService = {personService}
 			/>
 	
 			<h3>Numerot</h3>
@@ -43,6 +57,7 @@ const App = () => {
 				persons = {persons}
 				showAll = {showAll} 
 				searchParam = {searchParam}
+				handleDestroy = {handleDestroy}
 			/>
 		</div>
 	)

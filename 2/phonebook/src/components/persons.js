@@ -1,7 +1,10 @@
 import React from 'react'
 
-const Person = ({ persons, showAll, searchParam }) => {
-	const rows = () => personsToShow.map(person => <p key={person.name}>{person.name} {person.number}</p>)
+const Person = ({ persons, showAll, searchParam, handleDestroy }) => {
+
+	const rows = () => personsToShow.map(person => 
+		<p key={person.name}>{person.name} {person.number} <button onClick={() => handleDestroy(person.id)}>poista</button> </p>
+	)
 
 	const personsToShow = showAll
 		? persons

@@ -1,29 +1,24 @@
 {
-	"persons": [
-	  {
-		"name": "Arto Hellas",
-		"number": "040-123456",
-		"id": 1
-	  },
-	  {
-		"name": "Martti Tienari",
-		"number": "040-123456",
-		"id": 2
-	  },
-	  {
-		"name": "Arto Järvinen",
-		"number": "040-123456",
-		"id": 3
-	  },
-	  {
-		"name": "Lea Kutvonen",
-		"number": "040-123456",
-		"id": 4
-	  },
-	  {
-		"name": "Testi Heppu",
-		"number": "040-123456",
-		"id": 5
-	  }
-	]
-  }
+  "persons": [
+    {
+      "name": "varmaa vois",
+      "number": "",
+      "id": "varmaa vois"
+    },
+    {
+      "name": "opetella",
+      "number": "koodaa",
+      "id": "opetella"
+    },
+    {
+      "name": "asdf",
+      "number": "123123123",
+      "id": "asdf"
+    },
+    {
+      "name": "testi",
+      "number": "12345566",
+      "id": "testi"
+    }
+  ]
+}
