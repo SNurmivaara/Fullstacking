@@ -21,7 +21,7 @@ const App = () => {
       })
   },[])
   
-  const handleDestroy = id => {
+  const handleDestroy = (id) => {
     if (window.confirm(`Haluatko varmasti poistaa käyttäjän?`)) {
       personService
       .destroy(id).then(
