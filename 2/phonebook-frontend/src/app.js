@@ -25,11 +25,12 @@ const App = () => {
     if (window.confirm(`Haluatko varmasti poistaa käyttäjän?`)) {
       personService
       .destroy(id).then(
+        setPersons(persons.filter(person => person.id !== id)),
         setErrorMessage("Poistettiin onnistuneesti"),
         setTimeout(() => {
           setErrorMessage(null)
         }, 2000)
-        )
+      )
       .catch(error => {
         console.log(error)
         alert(
