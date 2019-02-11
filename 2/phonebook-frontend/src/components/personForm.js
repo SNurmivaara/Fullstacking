@@ -1,5 +1,4 @@
 import React from 'react'
-import person from '../services/person';
 
 const personForm = ({ newName, newNumber, persons, setPersons, setNewName, setNewNumber, personService, setErrorMessage}) => {
 
@@ -16,33 +15,46 @@ const personForm = ({ newName, newNumber, persons, setPersons, setNewName, setNe
 		const nameObject = {
 			name: newName,
 			number: newNumber,
-			id: newName,
 		}
 
 		 if (persons.filter(e => e.name === newName).length > 0) {
+      
       if (window.confirm(`${newName} on jo luettelossa, korvataanko vanha numero uudella?`)) {
         personService
-        .update(nameObject.id, nameObject)
+        .update(persons.filter(person => person.name === newName)[0].id, nameObject)
         .then(
+          setNewName(''),
+          setNewNumber(''),
           setErrorMessage("Muokattiin onnistuneesti"),
           setTimeout(() => {
             setErrorMessage(null)
           }, 2000)
-          )
+        )
         }
        } else {
         personService
         .create(nameObject)
-        .then(response => {
-          setPersons(persons.concat(nameObject))
-          setNewName('')
-          setNewNumber('')
-          setErrorMessage("Lisättiin onnistuneesti")
+        .then(
+          setNewName(''),
+          setNewNumber(''),
+          setErrorMessage("Lisättiin onnistuneesti"),
           setTimeout(() => {
           setErrorMessage(null)
-          }, 2000)
+          }, 5000)
+        )
+        .catch(error => {
+          setErrorMessage(`Error: ${error.response.data.error}`)
+          setTimeout(() => {
+          setErrorMessage(null)
+          }, 10000)
         })
      }
+
+     personService
+      .getAll()
+      .then(response => {
+        setPersons(response.data)
+      })
 	}
 
 	return (
