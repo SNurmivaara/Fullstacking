@@ -1,0 +1,9 @@
+POST http://localhost:3001/api/blogs
+content-type: application/json
+
+{
+  "title": "Blogit on tärkeitä",
+  "author": "Fullstack Dev",
+  "url": "www.reddit.com",
+  "likes": 3
+}
