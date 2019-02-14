@@ -6,16 +6,23 @@
   "scripts": {
     "start": "node index.js",
     "watch": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "test": "jest --verbose"
   },
   "author": "Sami Nurmivaara",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "lodash": "^4.17.11",
     "mongoose": "^5.4.12"
   },
   "devDependencies": {
+    "eslint": "^5.13.0",
+    "jest": "^24.1.0",
     "nodemon": "^1.18.10"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
