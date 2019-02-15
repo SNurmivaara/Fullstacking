@@ -1,21 +1,21 @@
-const config = require('./utils/config')
-const express = require('express')
-const bodyParser = require('body-parser')
+const config = require("./utils/config")
+const express = require("express")
+const bodyParser = require("body-parser")
 const app = express()
-const blogsRouter = require('./controllers/blogs')
-const mongoose = require('mongoose')
+const blogsRouter = require("./controllers/blogs")
+const mongoose = require("mongoose")
 
-console.log('Connecting to', config.MONGODB_URI)
+console.log("Connecting to", config.mongoUrl)
 
-mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true})
+mongoose.connect(config.mongoUrl, { useNewUrlParser: true })
   .then(() => {
-    console.log('connected to MongoDB')
+    console.log("connected to MongoDB")
   })
   .catch((error) => {
-    console.log('error connection to MongoDB:', error.message)
+    console.log("error connection to MongoDB:", error.message)
   })
 
 app.use(bodyParser.json())
-app.use('/api/blogs', blogsRouter)
+app.use("/api/blogs", blogsRouter)
 
 module.exports = app
