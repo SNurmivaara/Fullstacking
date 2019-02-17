@@ -1,4 +1,4 @@
-const listHelper = require('../utils/list_helper')
+const listHelper = require("../utils/list_helper")
 
 const blogs = [
   {
@@ -48,31 +48,31 @@ const blogs = [
     url: "http://blog.cleancoder.com/uncle-bob/2016/05/01/TypeWars.html",
     likes: 2,
     __v: 0
-  }  
+  }
 ]
 
-describe('Total likes', () => {
-  test('of empty list is zero', () => {
+describe("Total likes", () => {
+  test("of empty list is zero", () => {
     expect(listHelper.totalLikes([])).toBe(0)
   })
 
-  test('when list has only one blog, equals the likes of that', () => {
+  test("when list has only one blog, equals the likes of that", () => {
     expect(listHelper.totalLikes(blogs.slice(0,1))).toBe(blogs[0].likes)
   })
 
-  test('of a bigger list is calculated right', () => {
+  test("of a bigger list is calculated right", () => {
     expect(listHelper.totalLikes(blogs)).toBe(36)
   })
 })
 
-describe('Most', () => {
-  test('likes on a single blog', () => {
+describe("Most", () => {
+  test("likes on a single blog", () => {
     expect(listHelper.favoriteBlog(blogs).likes).toEqual(12)
   })
-  test('blogs written by single author', () => {
+  test("blogs written by single author", () => {
     expect(listHelper.mostBlogs(blogs).author).toEqual("Robert C. Martin")
   })
-  test('author with most total likes', () => {
+  test("author with most total likes", () => {
     expect(listHelper.mostLikesAuthor(blogs)).toEqual("Edsger W. Dijkstra")
   })
 })
