@@ -1,9 +1,9 @@
 POST http://localhost:3001/api/blogs
-content-type: application/json
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRhc2RmYXNkZiIsImlkIjoiNWM2YWFkMjM1MzNmM2UwZmQ0MTY3YzhjIiwiaWF0IjoxNTUwNDk3Mjg2fQ.fYD6qQSYKVpLJrPOf5T4cLD_rvKiGomlY216SPSAUxg
 
 {
-  "title": "Blogit on tärkeitä",
-  "author": "Fullstack Dev",
-  "url": "www.reddit.com",
-  "likes": 3
+  "title": "Blogit on tärkeitä vol 4",
+  "author": "Big Lebowski",
+  "url": "www.fastlane.com"
 }
