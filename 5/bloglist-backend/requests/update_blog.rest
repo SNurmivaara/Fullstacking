@@ -1,0 +1,9 @@
+PUT http://localhost:3001/api/blogs/5c69937cdcc7eac4708f38ca
+content-type: application/json
+
+{
+"title":	"Blogit on turhia",
+"author":	"Fullstack God",
+"url":	"www.reddut.com",
+"likes":	6
+}
