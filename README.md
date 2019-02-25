@@ -1,12 +1,14 @@
 # Fullstacking
 Assignments related to fullstack-hy2019.github.io
 
-[Osa 0](0/0.md)
+[Part 0](0/0.md)
 
-[Osa 1](1/)
+[Part 1](1/)
 
-[Osa 2](2/)
+[Part 2](2/)
 
-[Osa 3](3/) - [Osan 3 puhelinluettelo Herokussa](https://young-wildwood-40817.herokuapp.com/)
+[Part 3](3/) - [Part 3 phonebook in Heroku](https://young-wildwood-40817.herokuapp.com/)
 
-[Osa 4](4/)
+[Part 4](4/)
+
+[Part 5](5/)
