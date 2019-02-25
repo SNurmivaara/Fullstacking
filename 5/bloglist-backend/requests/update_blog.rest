@@ -1,9 +1,10 @@
-PUT http://localhost:3001/api/blogs/5c69937cdcc7eac4708f38ca
+PUT http://localhost:3003/api/blogs/5c6aaf47658bfa10a3d52e82
 content-type: application/json
 
 {
-"title":	"Blogit on turhia",
-"author":	"Fullstack God",
-"url":	"www.reddut.com",
-"likes":	6
+  "user": "5c6aad23533f3e0fd4167c8c",
+  "likes": 4,
+  "author": "Jeesus Itse",
+  "title": "Blogit on tärkeitä vol 3",
+  "url": "www.reddit.com"
 }
