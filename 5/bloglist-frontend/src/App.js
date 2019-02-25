@@ -4,15 +4,16 @@ import blogService from "./services/blogs"
 import loginService from "./services/login"
 import LoginForm from "./components/LoginForm"
 import BlogForm from "./components/BlogForm"
+import useField from "./hooks/useField"
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  const username = useField("text")
+  const password = useField("password")
   const [user, setUser] = useState(null)
-  const [title, setTitle] = useState("")
-  const [author, setAuthor] = useState("")
-  const [url, setUrl] = useState("")
+  const title = useField("text")
+  const author = useField("text")
+  const url = useField("text")
   const [notification, setNotification] = useState("")
   const [blogFormVisible, setBlogFormVisible] = useState(false)
 
@@ -34,20 +35,24 @@ const App = () => {
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
-      const user = await loginService.login({
-        username, password
-      })
+      const userObject = {
+        username: username.value,
+        password: password.value
+      }
+
+      const user = await loginService.login(userObject)
 
       window.localStorage.setItem(
         "loggedBlogAppUser", JSON.stringify(user)
       )
       blogService.setToken(user.token)
       setUser(user)
-      setUsername("")
-      setPassword("")
+      username.empty()
+      password.empty()
     } catch (exception) {
       alert("Password or login incorrect")
-      setPassword("")
+      username.empty()
+      password.empty()
     }
   }
 
@@ -65,16 +70,16 @@ const App = () => {
     event.preventDefault()
     try {
       const blogObject = {
-        title: title,
-        author: author,
-        url: url,
+        title: title.value,
+        author: author.value,
+        url: url.value,
         user: window.localStorage.getItem("loggedBlogAppUser")
       }
       const created = await blogService.create(blogObject)
       setBlogs(blogs.concat(created))
-      setTitle("")
-      setAuthor("")
-      setUrl("")
+      title.empty()
+      author.empty()
+      url.empty()
       setNotification("Blog creation successful")
       setTimeout(() => {
         setNotification(null)
@@ -104,8 +109,8 @@ const App = () => {
       <LoginForm
         username={username}
         password={password}
-        handleUsernameChange={({ target }) => setUsername(target.value)}
-        handlePasswordChange={({ target }) => setPassword(target.value)}
+        //handleUsernameChange={({ target }) => setUsername(target.value)}
+        //handlePasswordChange={({ target }) => setPassword(target.value)}
         handleLogin={handleLogin}
       />
     </div>
@@ -141,9 +146,9 @@ const App = () => {
             title={title}
             author={author}
             url={url}
-            handleTitleChange={({ target }) => setTitle(target.value)}
-            handleAuthorChange={({ target }) => setAuthor(target.value)}
-            handleUrlChange={({ target }) => setUrl(target.value)}
+            //handleTitleChange={({ target }) => setTitle(target.value)}
+            //handleAuthorChange={({ target }) => setAuthor(target.value)}
+            //handleUrlChange={({ target }) => setUrl(target.value)}
             handleBlogCreate={handleBlogCreate}
           />
           <button onClick={() => setBlogFormVisible(false)}>cancel</button>
