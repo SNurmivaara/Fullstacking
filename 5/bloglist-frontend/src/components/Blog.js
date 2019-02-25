@@ -74,7 +74,7 @@ const Blog = ({ blog }) => {
 
   if (deleted !== true) {
     return (
-      <div style={blogStyle}>
+      <div style={blogStyle} className="blog">
         <div>
           {expanded === true ?
             expandedBlog :
