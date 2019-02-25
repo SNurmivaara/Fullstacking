@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react"
 import blogService from "../services/blogs"
 
 const Blog = ({ blog }) => {
@@ -40,7 +40,7 @@ const Blog = ({ blog }) => {
       } catch (exception) {
         alert("blog delete failed!")
       }
-    } 
+    }
   }
 
   const likeButton = (
@@ -65,7 +65,7 @@ const Blog = ({ blog }) => {
       Url: {blog.url}<br/>
       {blog.likes} likes {likeButton}<br/>
       added by {blog.user.name}<br/>
-      {blog.user.name === JSON.parse(user).name ? 
+      {blog.user.name === JSON.parse(user).name ?
         removeButton :
         null
       }

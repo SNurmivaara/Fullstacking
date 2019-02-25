@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import Blog from './components/Blog'
-import blogService from './services/blogs'
+import React, { useState, useEffect } from "react"
+import Blog from "./components/Blog"
+import blogService from "./services/blogs"
 import loginService from "./services/login"
-import LoginForm from './components/LoginForm'
+import LoginForm from "./components/LoginForm"
 import BlogForm from "./components/BlogForm"
 
 const App = () => {
@@ -19,7 +19,7 @@ const App = () => {
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
   }, [])
 
   useEffect(() => {
@@ -114,22 +114,22 @@ const App = () => {
   const blogListing = () => (
     <div>
       <form onSubmit={handleLogout}>
-      <button type="submit">logout</button>
+        <button type="submit">logout</button>
       </form>
       <p>Welcome back {user.username}!</p>
-    <h1>Blogs</h1>
+      <h1>Blogs</h1>
       {blogForm()}
       {blogs
         .sort((a,b) => a.likes < b.likes)
         .map(blog =>
-        <Blog key={blog.id} blog={blog} />
-      )}
+          <Blog key={blog.id} blog={blog} />
+        )}
     </div>
   )
 
   const blogForm = () => {
-    const hideWhenVisible = { display: blogFormVisible ? "none" : ""}
-    const showWhenVisible = { display: blogFormVisible ? "" : "none"}
+    const hideWhenVisible = { display: blogFormVisible ? "none" : "" }
+    const showWhenVisible = { display: blogFormVisible ? "" : "none" }
 
     return (
       <div>
