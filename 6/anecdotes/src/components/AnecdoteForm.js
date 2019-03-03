@@ -9,6 +9,7 @@ const AnecdoteForm = ({ store }) => {
     )
     event.target.anecdote.value = ""
   }
+  
   return (
       <div className="AnecdoteForm">
       <h2>create new</h2>
