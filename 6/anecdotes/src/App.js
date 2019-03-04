@@ -7,7 +7,7 @@ import Notification from './components/Notification'
 const App = (props) => {
   return (
     <div>
-      {props.store.getState().notification === null ? 
+      {props.notification === null ? 
         null : 
         <Notification store={props.store}/>
       }
