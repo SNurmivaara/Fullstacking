@@ -1,16 +1,25 @@
-const notificationReducer = (state = "ALERT", action) => {
-  switch (action.type) {
-    case "SET_NOTIFICATION":
-      return action.notification
-    default:
-      return state
+export const notificationChange = (content) => {
+  return {
+    type: "SET_NOTIFICATION",
+    content
   }
 }
 
-export const notificationChange = notification => {
+export const resetNotification = () => {
   return {
-    type: "SET_NOTIFICATION",
-    notification
+    type: "RESET"
+  }
+}
+
+const notificationReducer = (state = null, action) => {
+  switch (action.type) {
+    case "SET_NOTIFICATION":
+      state = action.content
+      return state
+    case "RESET":
+      return null
+    default:
+      return state
   }
 }
 

@@ -6,7 +6,10 @@ import Notification from './components/Notification'
 const App = (props) => {
   return (
     <div>
-      <Notification store={props.store} />
+      {props.store.getState().notification === null ? 
+        null : 
+        <Notification store={props.store}/>
+      }
       <h2>Anecdotes</h2>
       <AnecdoteListing store={props.store} />
       <AnecdoteForm store={props.store} />
