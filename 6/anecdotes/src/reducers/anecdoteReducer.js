@@ -31,9 +31,13 @@ export const createAnecdote = content => {
 }
 
 export const addVote = (id) => {
-  return {
-    type: 'VOTE',
-    data: { id }
+  return async dispatch => {
+    const voted = await anecdoteService.get(id)
+    const votedAnecdote = await anecdoteService.vote(voted)
+    dispatch({
+      type: "VOTE",
+      content: votedAnecdote
+    })
   }
 }
 
@@ -58,7 +62,7 @@ const reducer = (state = [], action) => {
               .concat(action.content)
               .sort((a,b) => a.votes < b.votes)
     case 'VOTE':
-      const id = action.data.id
+      const id = action.content.id
       const anecdoteToVote = state.find(n => n.id === id)
       const changedAnecdote = {
         ...anecdoteToVote,
@@ -69,8 +73,10 @@ const reducer = (state = [], action) => {
               .sort((a,b) => a.votes < b.votes)
     case 'INIT_ANECDOTES':
       return action.data
+              .sort((a,b) => a.votes < b.votes)
     default:
       return state
+              .sort((a,b) => a.votes < b.votes)
   }
 }
 
