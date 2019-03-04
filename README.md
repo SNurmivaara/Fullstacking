@@ -12,3 +12,5 @@ Assignments related to fullstack-hy2019.github.io
 [Part 4](4/)
 
 [Part 5](5/)
+
+[Part 6](6/)
