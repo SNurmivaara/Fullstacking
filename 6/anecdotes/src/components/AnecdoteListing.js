@@ -4,6 +4,14 @@ import { notificationChange, resetNotification } from '../reducers/notificationR
 
 const AnecdoteListing = ({ store }) => {
   const anecdotes = store.getState().anecdotes
+  const filter = store.getState().filter
+
+  const anecdotesToShow = () => {
+    if (filter === "") {
+      return anecdotes
+    }
+    return anecdotes.filter((anecdotes) => anecdotes.content.toLowerCase().includes(filter.toLowerCase()))
+  }
   
   const vote = (id, content) => {
     store.dispatch(
@@ -24,7 +32,7 @@ const AnecdoteListing = ({ store }) => {
 
   return (
     <div className="AnecdoteList">
-      {anecdotes.map(anecdote =>
+      {anecdotesToShow().map(anecdote =>
         <div key={anecdote.id}>
           <div>
             {anecdote.content}
