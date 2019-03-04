@@ -7,14 +7,11 @@ import Notification from './components/Notification'
 const App = (props) => {
   return (
     <div>
-      {props.notification === null ? 
-        null : 
-        <Notification store={props.store}/>
-      }
+      <Notification />
       <h2>Anecdotes</h2>
-      <Filter store={props.store} />
-      <AnecdoteListing store={props.store} />
-      <AnecdoteForm store={props.store} />
+      <Filter />
+      <AnecdoteListing />
+      <AnecdoteForm />
     </div>
   )
 }
