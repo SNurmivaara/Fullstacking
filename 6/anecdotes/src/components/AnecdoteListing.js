@@ -4,15 +4,6 @@ import { addVote } from '../reducers/anecdoteReducer'
 import { notificationChange, resetNotification } from '../reducers/notificationReducer'
 
 const AnecdoteListing = (props) => {
-  const anecdotes = props.anecdotes
-  const filter = props.filter
-
-  const anecdotesToShow = () => {
-    if (filter === "") {
-      return anecdotes
-    }
-    return anecdotes.filter((anecdotes) => anecdotes.content.toLowerCase().includes(filter.toLowerCase()))
-  }
   
   const vote = (id, content) => {
     props.addVote(id)
@@ -27,7 +18,7 @@ const AnecdoteListing = (props) => {
 
   return (
     <div className="AnecdoteList">
-      {anecdotesToShow().map(anecdote =>
+      {props.anecdotesToShow.map(anecdote =>
         <div key={anecdote.id}>
           <div>
             {anecdote.content}
@@ -42,9 +33,16 @@ const AnecdoteListing = (props) => {
   )
 }
 
+const anecdotesToShow = ({ anecdotes, filter }) => {
+  if (filter === "") {
+    return anecdotes
+  }
+  return anecdotes.filter((anecdotes) => anecdotes.content.toLowerCase().includes(filter.toLowerCase()))
+}
+
 const mapStateToProps = (state) => {
   return {
-    anecdotes: state.anecdotes,
+    anecdotesToShow: anecdotesToShow(state),
     filter: state.filter
   }
 }
